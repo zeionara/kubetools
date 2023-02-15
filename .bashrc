@@ -20,22 +20,37 @@ alias mbz='minikube version'
 
 alias kl='kubectl'
 
-# get
+# describe
 
-alias klgn='kubectl get nodes'
-alias klgnw='kubectl get nodes -o wide'
+alias kldd='kubectl describe deployments'
+alias kldn='kubectl describe nodes'
+alias kldp='kubectl describe pods'
+
+# exec
+
+kle () {
+    kubectl exec $1 -- $2
+}
+
+kleb () {
+    kubectl exec -it $1 -- bash
+}
+
+# get
 
 alias klgd='kubectl get deployments'
 alias klgdw='kubectl get deployments -o wide'
 
+alias klgn='kubectl get nodes'
+alias klgnw='kubectl get nodes -o wide'
+
 alias klgp='kubectl get pods'
-alias klgpw='kubectl get pods -o wide'
 alias klgpn="kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"'"'"\n"'"'"}}{{end}}'"
+alias klgpw='kubectl get pods -o wide'
 
-# describe
+# logs
 
-alias kldn='kubectl describe nodes'
-alias kldd='kubectl describe deployments'
+alias kll='kubectl logs'
 
 # make (create)
 
