@@ -23,7 +23,14 @@ alias kl='kubectl'
 # get
 
 alias klgn='kubectl get nodes'
+alias klgnw='kubectl get nodes -o wide'
+
 alias klgd='kubectl get deployments'
+alias klgdw='kubectl get deployments -o wide'
+
+alias klgp='kubectl get pods'
+alias klgpw='kubectl get pods -o wide'
+alias klgpn="kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"'"'"\n"'"'"}}{{end}}'"
 
 # describe
 
