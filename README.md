@@ -15,3 +15,11 @@ To apply changes to your current terminal session execute the following command:
 ```sh
 . ~/.bashrc
 ```
+
+## Examples
+
+The following command allows to get into the first pod and execute a curl command inside it:
+
+```sh
+kle $(klgpn | head -n 1) curl -s localhost:8080
+```

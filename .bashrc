@@ -6,9 +6,25 @@
 
 alias kl='kubectl'
 
-# attach (label)
+# apply
 
-alias klap='kubectl label pods'
+alias kla='kubectl apply -f'
+
+# boot (rollout) status
+
+klbs () {
+    kubectl rollout status deployments/$1
+}
+
+klbu () {
+    kubectl rollout undo deployments/$1
+}
+
+# change (set)
+
+klci () {
+    kubectl set image deployments/$1 $2
+}
 
 # describe
 
@@ -25,16 +41,21 @@ alias kldd='kubectl describe deployments'
 
 alias kldn='kubectl describe nodes'
 alias kldp='kubectl describe pods'
+alias klds='kubectl describe services'
 
 # exec
 
 kle () {
-    kubectl exec $1 -- $2
+    kubectl exec $1 -- ${@:2}
 }
 
 kleb () {
     kubectl exec -it $1 -- bash
 }
+
+# flag (label)
+
+alias klfp='kubectl label pods'
 
 # get
 
@@ -50,6 +71,8 @@ alias klgp='kubectl get pods'
 alias klgpl='kubectl get pods -l'
 alias klgpn="kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"'"'"\n"'"'"}}{{end}}'"
 alias klgpw='kubectl get pods -o wide'
+
+alias klgr='kubectl get rs'
 
 alias klgs='kubectl get services'
 alias klgsl='kubectl get services -l'
@@ -84,6 +107,14 @@ alias klr='kubectl delete'
 
 alias klrs='kubectl delete service'
 alias klrsl='kubectl delete service -l'
+
+alias klrd='kubectl delete deployment'
+
+# scale
+
+kls () {
+    kubectl scale deployments/$1 --replicas=$2
+}
 
 # expose
 
