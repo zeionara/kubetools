@@ -140,6 +140,12 @@ kls () {
     kubectl scale deployments/$1 --replicas=$2
 }
 
+# top
+
+alias klt='kubectl top'
+alias kltn='kubectl top node'
+alias kltp='kubectl top pod'
+
 # expose
 
 klxp() {
