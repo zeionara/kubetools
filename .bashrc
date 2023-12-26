@@ -63,6 +63,7 @@ alias klg='kubectl get'
 
 alias klgd='kubectl get deployments'
 alias klgdw='kubectl get deployments -o wide'
+alias klgi='kubectl get ingress'
 
 alias klgn='kubectl get nodes'
 alias klgnw='kubectl get nodes -o wide'
@@ -71,6 +72,8 @@ alias klgp='kubectl get pods'
 alias klgpl='kubectl get pods -l'
 alias klgpn="kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"'"'"\n"'"'"}}{{end}}'"
 alias klgpw='kubectl get pods -o wide'
+
+alias klgpnv='kubectl get pods -n nvidia-device-plugin'
 
 alias klgr='kubectl get rs'
 
@@ -86,6 +89,26 @@ klgsp () {
 }
 
 alias klgsw='kubectl get services -o wide'
+
+# cluster info
+
+alias kli="kubectl cluster-info"
+
+# contexts (kontexts)
+
+alias klkl='kubectl config get-contexts'
+alias klkc='kubectl config current-context'
+
+klku () {
+    _context_index="$1"
+
+    if test -z "$_context_index"; then
+        echo 'context index is missing'
+        exit 1
+    fi
+
+    kubectl config use-context $(kubectl config get-contexts | head -n $((_context_index + 1)) | tail -n 1 | awk '{print $1}')
+}
 
 # logs
 
@@ -109,6 +132,7 @@ alias klrs='kubectl delete service'
 alias klrsl='kubectl delete service -l'
 
 alias klrd='kubectl delete deployment'
+alias klrp='kubectl delete pod'
 
 # scale
 
